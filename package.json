@@ -1,1 +1,13 @@
-package.json
+{
+  "name": "my-ai-project",
+  "version": "1.0.0",
+  "description": "Project built with Google AI Studio",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
