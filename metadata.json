@@ -1,0 +1,7 @@
+{
+  "name": "MD SPA Rabat",
+  "description": "Luxury Spa & Beauty Website",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
