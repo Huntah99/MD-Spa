@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MD SPA | Luxury Wellness Rabat</title>
+    <title>MD SPA | Sublime Serenity Rabat</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -17,220 +17,260 @@
             theme: {
                 extend: {
                     colors: {
-                        gold: {
-                            light: '#D4AF37', 
-                            DEFAULT: '#C5A028',
-                            dark: '#A08020'
-                        },
-                        sand: '#F5F1E8',
-                        charcoal: '#1A1A1A',
-                        cream: '#FDFCF8'
+                        gold: { DEFAULT: '#C5A028', light: '#D4AF37', dark: '#9A7D20' },
+                        charcoal: { DEFAULT: '#1A1A1A', light: '#2A2A2A' },
+                        sand: '#F8F5F0',
+                        taupe: '#E5E0D8'
                     },
                     fontFamily: {
                         serif: ['Playfair Display', 'serif'],
                         sans: ['Lato', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'hero-pattern': "url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
                     }
                 }
             }
         }
     </script>
-
     <style>
-        html { scroll-behavior: smooth; }
-        
-        .animate-fade-in {
-            animation: fadeIn 1.2s ease-out forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-nav {
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-        }
+        .bg-overlay-dark { background: linear-gradient(to bottom, rgba(26,26,26,0.4), rgba(26,26,26,0.8)); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-cream text-charcoal font-sans antialiased">
+<body class="bg-sand text-charcoal font-sans antialiased" x-data="{ menuOpen: false }">
 
-    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav text-white py-4 shadow-md">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-xl md:text-2xl font-serif tracking-widest font-semibold">
-                MD <span class="text-gold-light italic">SPA</span>
-            </div>
-            
-            <div class="hidden md:flex space-x-8 text-xs tracking-[0.2em] uppercase opacity-90">
-                <a href="#about" class="hover:text-gold-light transition">About</a>
-                <a href="#services" class="hover:text-gold-light transition">Services</a>
-                <a href="#contact" class="hover:text-gold-light transition">Contact</a>
-            </div>
+    <nav class="fixed w-full z-50 py-4 md:py-6 px-6 md:px-8 flex justify-between items-center transition-all duration-300 bg-gradient-to-b from-charcoal/80 to-transparent backdrop-blur-[2px]">
+        
+        <div class="text-2xl md:text-3xl font-serif tracking-widest font-bold text-white relative z-50">
+            MD <span class="text-gold italic">SPA</span>
+        </div>
 
-            <a href="tel:0767071518" class="bg-gold hover:bg-gold-dark text-white px-5 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition shadow-lg">
+        <div class="hidden md:flex space-x-8 text-xs tracking-[0.2em] uppercase font-bold text-white/90">
+            <a href="#about" class="hover:text-gold transition relative group">
+                About
+                <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-gold transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#services" class="hover:text-gold transition relative group">
+                Services
+                <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-gold transition-all group-hover:w-full"></span>
+            </a>
+            <a href="#location" class="hover:text-gold transition relative group">
+                Location
+                <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-gold transition-all group-hover:w-full"></span>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-4 md:gap-6 relative z-50">
+            <a href="tel:0767071518" class="bg-gold hover:bg-gold-dark text-white px-5 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition shadow-lg transform hover:scale-105">
                 Book Now
             </a>
+            
+            <button @click="menuOpen = true" class="text-white hover:text-gold transition p-1">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden pt-20">
-        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center"></div>
-        <div class="absolute inset-0 bg-black/60"></div> <div class="relative z-10 max-w-4xl px-6 flex flex-col items-center justify-center h-full space-y-8 py-20">
-            
-            <p class="text-gold-light tracking-[0.3em] uppercase text-xs md:text-sm animate-fade-in">
-                A Haven of Peace
-            </p>
+    <div x-show="menuOpen" x-cloak 
+         class="fixed inset-0 z-[60] bg-charcoal text-white flex flex-col"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-x-full"
+         x-transition:enter-end="opacity-100 translate-x-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-x-0"
+         x-transition:leave-end="opacity-0 translate-x-full">
+        
+        <div class="flex justify-end p-8">
+            <button @click="menuOpen = false" class="text-white hover:text-gold transition transform hover:rotate-90 duration-300">
+                <i data-lucide="x" class="w-10 h-10"></i>
+            </button>
+        </div>
 
-            <h1 class="text-5xl md:text-7xl font-serif font-light leading-tight animate-fade-in" style="animation-delay: 0.2s;">
-                Dedicated to Beauty, <br/> 
-                <span class="italic text-gold-light">Wellness & Renewal</span>
+        <div class="flex-1 flex flex-col justify-center items-center space-y-8 p-8 text-center">
+            <h2 class="text-gold text-sm uppercase tracking-[0.3em] mb-4">Directory</h2>
+            <nav class="flex flex-col space-y-6 text-3xl md:text-5xl font-serif">
+                <a href="#services" @click="menuOpen = false" class="hover:text-gold transition hover:italic">Our Services</a>
+                <a href="#about" @click="menuOpen = false" class="hover:text-gold transition hover:italic">The Experience</a>
+                <a href="#location" @click="menuOpen = false" class="hover:text-gold transition hover:italic">Location & Map</a>
+                <a href="tel:0767071518" class="hover:text-gold transition hover:italic">Contact Us</a>
+            </nav>
+            
+            <div class="mt-12 space-y-4 text-sm tracking-widest opacity-70">
+                <p><i data-lucide="map-pin" class="inline w-4 h-4 mr-2"></i> Avenue de Jabel Tazzaka, Rabat</p>
+                <p><i data-lucide="phone" class="inline w-4 h-4 mr-2"></i> 0767-071518</p>
+                 <p class="text-gold pt-4">Open 7 Days a Week</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Spa ambiance" class="w-full h-full object-cover scale-105 animate-[pulse_10s_ease-in-out_infinite]">
+        </div>
+        <div class="absolute inset-0 bg-charcoal/60"></div> <div class="relative z-10 max-w-4xl px-6 space-y-8">
+            <p class="text-gold tracking-[0.4em] uppercase text-xs md:text-sm animate-fade-in">
+                Rabat's Finest Sanctuary
+            </p>
+            <h1 class="text-6xl md:text-8xl font-serif font-light leading-none animate-fade-in delay-200">
+                Sublime <br/> <span class="italic text-gold">Serenity</span>
             </h1>
-
-            <p class="text-base md:text-xl font-light opacity-90 max-w-lg mx-auto leading-relaxed animate-fade-in" style="animation-delay: 0.4s;">
-                Discover MD SPA — a luxurious escape in Rabat where relaxation, care, and perfection meet.
+            <p class="text-lg font-light opacity-80 max-w-xl mx-auto animate-fade-in delay-300">
+                A haven of peace dedicated to beauty, wellness, and renewal.
             </p>
             
-            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto justify-center pt-4 animate-fade-in" style="animation-delay: 0.6s;">
-                <a href="tel:0767071518" class="bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition shadow-lg transform hover:scale-105">
+            <div class="pt-8 animate-fade-in delay-500">
+                <a href="tel:0767071518" class="bg-gold hover:bg-gold-dark text-white px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition shadow-2xl hover:scale-105 transform duration-300">
                     Book Appointment
                 </a>
-                <a href="#contact" class="bg-white/10 backdrop-blur-sm border border-white/40 hover:bg-white hover:text-charcoal text-white px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition">
-                    Contact Us
-                </a>
-            </div>
-
-            <div class="pt-8 animate-fade-in" style="animation-delay: 0.8s;">
-                <span class="bg-black/30 backdrop-blur-md px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-white/20 text-gray-200">
-                    Open 7 Days a Week
-                </span>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-20 bg-sand">
-        <div class="max-w-3xl mx-auto px-6 text-center space-y-8">
-            <h2 class="text-3xl md:text-4xl font-serif text-charcoal">The Art of Relaxation</h2>
-            <div class="w-20 h-0.5 bg-gold mx-auto"></div>
-            <p class="text-lg leading-relaxed font-light text-gray-700">
-                MD SPA is a large beauty and wellness spa featuring massage, hammam, waxing, and beauty care. A unique space — a haven of peace dedicated to discovery and travel. Known for luxury service and a constant quest for perfection, MD SPA invites you to escape daily life, recharge your energy, and reconnect with yourself.
+    <section id="about" class="py-24 relative overflow-hidden bg-taupe/30">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+         
+        <div class="relative max-w-4xl mx-auto px-6 text-center space-y-10">
+            <div class="flex flex-col items-center">
+                <span class="text-gold text-xs uppercase tracking-[0.3em] mb-4">The MD Experience</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-charcoal">A Journey for the Senses</h2>
+                <div class="w-24 h-0.5 bg-gold mt-6"></div>
+            </div>
+            <p class="text-xl leading-relaxed font-light text-charcoal/80 font-serif italic">
+                "MD SPA is a unique space — a haven of peace dedicated to discovery and travel. Known for luxury service and a constant quest for perfection, we invite you to escape daily life and reconnect with yourself."
             </p>
+            
+            <div class="grid grid-cols-3 gap-8 pt-10 border-t border-charcoal/10 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <i data-lucide="sparkles" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+                    <h4 class="text-sm uppercase tracking-widest font-bold">Luxury</h4>
+                </div>
+                <div class="text-center">
+                     <i data-lucide="flower-2" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+                    <h4 class="text-sm uppercase tracking-widest font-bold">Serenity</h4>
+                </div>
+                <div class="text-center">
+                     <i data-lucide="heart" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+                    <h4 class="text-sm uppercase tracking-widest font-bold">Renewal</h4>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="services" class="py-20 bg-white">
+    <section id="services" class="py-24 bg-charcoal text-white">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif mb-4">Our Menu</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Curated Treatments for Body & Soul</p>
+            <div class="text-center mb-20">
+                <span class="text-gold text-xs uppercase tracking-[0.3em]">Our Offerings</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-4">Curated Treatments</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="bg-cream p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 border border-stone-100 text-center group">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition">
-                        <i data-lucide="waves" class="w-6 h-6"></i>
+                <div class="group relative h-96 rounded-xl overflow-hidden cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Hammam">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <h3 class="text-3xl font-serif text-gold italic mb-2">Hammam & Massage</h3>
+                        <p class="text-white/80 font-light text-sm mb-6">Traditional rituals and deep relaxation oils.</p>
+                        <a href="tel:0767071518" class="text-xs uppercase tracking-widest border-b border-gold pb-1 text-gold">Reserve</a>
                     </div>
-                    <h3 class="text-xl font-serif mb-3">Massage & Hammam</h3>
-                    <p class="text-gray-600 mb-6 text-sm font-light">Traditional Moroccan scrubbing rituals and deep relaxation massages using organic oils.</p>
                 </div>
 
-                <div class="bg-cream p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 border border-stone-100 text-center group">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition">
-                        <i data-lucide="droplet" class="w-6 h-6"></i>
+                 <div class="group relative h-96 rounded-xl overflow-hidden cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Facial">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                        <h3 class="text-3xl font-serif text-gold italic mb-2">Beauty & Body</h3>
+                        <p class="text-white/80 font-light text-sm mb-6">Rejuvenating facials to restore your glow.</p>
+                         <a href="tel:0767071518" class="text-xs uppercase tracking-widest border-b border-gold pb-1 text-gold">Reserve</a>
                     </div>
-                    <h3 class="text-xl font-serif mb-3">Waxing</h3>
-                    <p class="text-gray-600 mb-6 text-sm font-light">Professional, gentle hair removal services leaving your skin smooth and radiant.</p>
                 </div>
 
-                <div class="bg-cream p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 border border-stone-100 text-center group">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition">
-                        <i data-lucide="gem" class="w-6 h-6"></i>
+                <div class="group relative h-96 rounded-xl overflow-hidden cursor-pointer lg:col-span-1 md:col-span-2">
+                    <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=800" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Manicure">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 z-20">
+                         <h3 class="text-3xl font-serif text-gold italic mb-2">Nail Artistry</h3>
+                        <p class="text-white/80 font-light text-sm mb-6">Elegant manicure, pedicure, and waxing.</p>
+                         <a href="tel:0767071518" class="text-xs uppercase tracking-widest border-b border-gold pb-1 text-gold">Reserve</a>
                     </div>
-                    <h3 class="text-xl font-serif mb-3">Manicure</h3>
-                    <p class="text-gray-600 mb-6 text-sm font-light">Elegant nail artistry and hand care in our comfortable lounge.</p>
-                </div>
-
-                <div class="bg-cream p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 border border-stone-100 text-center group">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition">
-                        <i data-lucide="footprints" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-serif mb-3">Pedicure</h3>
-                    <p class="text-gray-600 mb-6 text-sm font-light">Relaxing foot spa and care treatments for total rejuvenation.</p>
-                </div>
-
-                <div class="bg-cream p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-500 border border-stone-100 text-center group md:col-span-2 lg:col-span-1">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition">
-                        <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-serif mb-3">Beauty & Body</h3>
-                    <p class="text-gray-600 mb-6 text-sm font-light">Rejuvenating facials and full-body treatments designed to restore your natural glow.</p>
-                </div>
-
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="tel:0767071518" class="text-gold font-bold text-xs uppercase tracking-widest border-b border-gold hover:text-charcoal hover:border-charcoal transition pb-1">
-                    Book A Treatment
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-20 bg-charcoal text-white">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
-            
-            <div class="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
-                <h3 class="text-2xl font-serif text-gold mb-6 text-center">Opening Hours</h3>
-                <div class="space-y-3 font-light text-sm tracking-wide opacity-90">
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Monday</span> <span>10:00 AM – 10:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Tuesday</span> <span>10:00 AM – 10:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Wednesday</span> <span>10:00 AM – 09:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Thursday</span> <span>10:00 AM – 10:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Friday</span> <span>10:00 AM – 10:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Saturday</span> <span>10:00 AM – 10:00 PM</span></div>
-                    <div class="flex justify-between border-b border-white/10 pb-2"><span>Sunday</span> <span>10:00 AM – 09:30 PM</span></div>
-                </div>
-            </div>
-
-            <div class="space-y-8 text-center md:text-left">
-                <div>
-                    <h3 class="text-3xl font-serif mb-4">Visit Us</h3>
-                    <p class="text-gray-400 font-light">Avenue de Jabel Tazzaka, Rabat 10000, Morocco</p>
-                    <a href="tel:0767071518" class="text-4xl md:text-5xl font-serif text-gold hover:text-white transition block mt-4">
-                        0767-071518
-                    </a>
-                </div>
-                
-                <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                    <a href="https://maps.google.com/?q=Avenue+de+Jabel+Tazzaka,+Rabat" target="_blank" class="bg-white text-charcoal px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition flex items-center justify-center gap-2">
-                        <i data-lucide="map"></i> Get Directions
-                    </a>
-                    <a href="tel:0767071518" class="bg-gold text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold-dark transition flex items-center justify-center gap-2">
-                        <i data-lucide="phone"></i> Call Now
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="flex items-center gap-2 text-xs text-gray-400 justify-center md:justify-start"><i data-lucide="accessibility" class="text-gold w-4 h-4"></i> Wheelchair Access</div>
-                    <div class="flex items-center gap-2 text-xs text-gray-400 justify-center md:justify-start"><i data-lucide="banknote" class="text-gold w-4 h-4"></i> Cash Accepted</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black text-white py-10 border-t border-white/10">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="text-xl font-serif font-bold mb-4">MD <span class="text-gold italic">SPA</span></div>
-            <p class="text-[10px] text-gray-500 uppercase tracking-widest">© 2025 MD SPA Rabat. All Rights Reserved.</p>
+    <section id="location" class="py-24 bg-sand relative">
+         <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1920" class="w-full h-full object-cover grayscale opacity-10" alt="Marble texture">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="bg-charcoal text-white p-12 md:p-16 rounded-3xl shadow-2xl grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-10">
+                    <div>
+                        <span class="text-gold text-xs uppercase tracking-[0.3em]">Visit Us</span>
+                        <h2 class="text-4xl font-serif mt-2">Contact & Location</h2>
+                    </div>
+                    
+                    <div class="space-y-6 font-light">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="text-gold w-6 h-6 shrink-0"></i>
+                            <p class="text-lg leading-relaxed">Avenue de Jabel Tazzaka,<br> Rabat 10000, Morocco</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="phone" class="text-gold w-6 h-6 shrink-0"></i>
+                            <a href="tel:0767071518" class="text-2xl md:text-3xl font-serif hover:text-gold transition">0767-071518</a>
+                        </div>
+                        <div class="flex items-center gap-4 pt-4">
+                             <i data-lucide="clock" class="text-gold w-6 h-6 shrink-0"></i>
+                            <div>
+                                <p class="text-sm uppercase tracking-widest">Open 7 Days a Week</p>
+                                <p class="text-sm opacity-70">10:00 AM – 10:00 PM (Varies slightly by day)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-6">
+                         <a href="https://www.google.com/maps/search/?api=1&query=Avenue+de+Jabel+Tazzaka+Rabat" target="_blank" class="bg-white text-charcoal px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition flex items-center gap-2">
+                            <i data-lucide="map"></i> Get Directions
+                        </a>
+                        <a href="tel:0767071518" class="border-2 border-gold text-gold px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-gold hover:text-white transition flex items-center gap-2">
+                            <i data-lucide="phone"></i> Call Reception
+                        </a>
+                    </div>
+                </div>
+
+                <div class="h-full min-h-[300px] rounded-2xl overflow-hidden relative hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?q=80&w=800" class="w-full h-full object-cover grayscale" alt="Rabat aesthetics">
+                    <div class="absolute inset-0 bg-gold/20 mix-blend-multiply"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                         <a href="https://www.google.com/maps/search/?api=1&query=Avenue+de+Jabel+Tazzaka+Rabat" target="_blank" class="bg-charcoal/80 backdrop-blur-md text-white px-6 py-3 rounded-full text-sm uppercase tracking-widest hover:bg-gold transition flex items-center gap-2">
+                            <i data-lucide="external-link"></i> View on Map
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-charcoal-light text-white/60 py-12 border-t border-white/5 text-center">
+        <div class="max-w-6xl mx-auto px-6 space-y-6">
+             <div class="text-2xl font-serif font-bold text-white">MD <span class="text-gold italic">SPA</span></div>
+            <div class="flex justify-center gap-6 pt-2">
+                <a href="#" class="hover:text-gold transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-gold transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+            </div>
+            <p class="text-[10px] uppercase tracking-widest">© 2025 MD SPA Rabat. Luxury Wellness.</p>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
     </script>
+    <style>
+        .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </body>
 </html>
