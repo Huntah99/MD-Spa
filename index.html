@@ -3,26 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My App</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>MD SPA | Rabat Sanctuary</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'spa-gold': '#D4AF37', 
+                        'spa-charcoal': '#1f2937', 
+                        'spa-sand': '#f3f4f6'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        @keyframes zoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .animate-zoom { animation: zoom 20s infinite alternate; }
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body>
-    <div id="root"></div>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <script type="text/babel" data-presets="react" src="./index.tsx"></script>
-    
+    <nav id="navbar" class="fixed w-full z-50 p-6 flex justify-between items-center transition-all duration-300">
+        <span class="text-2xl font-serif font-bold tracking-tighter text-white" id="nav-logo">MD <span class="text-spa-gold">SPA</span></span>
+        <a href="#contact" class="bg-spa-gold text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-yellow-600 transition">Book</a>
+    </nav>
+
+    <section class="relative h-[90vh] flex items-center justify-center text-center text-white overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover animate-zoom" />
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 space-y-4 px-6">
+            <h1 class="text-6xl font-serif italic">Sublime Serenity</h1>
+            <p class="opacity-80 uppercase tracking-[0.4em] text-[10px]">Rabat's Finest Sanctuary</p>
+        </div>
+    </section>
+
+    <section class="py-20 px-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="h-96 rounded-[2rem] overflow-hidden relative shadow-lg group">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-serif">Hammam</h3>
+                    <a href="https://wa.me/212767071518" class="text-[10px] uppercase font-bold tracking-widest mt-2 border-b w-fit border-spa-gold hover:text-spa-gold">Reserve</a>
+                </div>
+            </div>
+
+            <div class="h-96 rounded-[2rem] overflow-hidden relative shadow-lg group">
+                <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-serif">Nails</h3>
+                    <a href="https://wa.me/212767071518" class="text-[10px] uppercase font-bold tracking-widest mt-2 border-b w-fit border-spa-gold hover:text-spa-gold">Reserve</a>
+                </div>
+            </div>
+
+            <div class="h-96 rounded-[2rem] overflow-hidden relative shadow-lg group">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-serif">Sculpting</h3>
+                    <a href="https://wa.me/212767071518" class="text-[10px] uppercase font-bold tracking-widest mt-2 border-b w-fit border-spa-gold hover:text-spa-gold">Reserve</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white text-center space-y-4 border-t">
+        <h2 class="text-4xl font-serif text-spa-gold italic">Connect</h2>
+        <p class="text-2xl font-serif">0767-071518</p>
+        <p class="text-[10px] uppercase opacity-40">Avenue de Jabel Tazzaka, Rabat</p>
+    </section>
+
+    <footer class="bg-spa-charcoal py-10 text-white/20 text-[8px] text-center tracking-widest">
+        © 2024 MD SPA RABAT
+    </footer>
+
+    <div class="fixed bottom-6 left-6 z-50">
+        <a href="https://wa.me/212767071518" class="bg-[#25D366] text-white p-4 rounded-full shadow-xl flex hover:scale-110 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </a>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <div id="ai-window" class="hidden bg-white rounded-[2rem] shadow-2xl w-[85vw] md:w-80 overflow-hidden border mb-4">
+            <div class="bg-spa-charcoal p-4 text-white flex justify-between items-center">
+                <span class="font-serif italic">MD Concierge</span>
+                <button onclick="toggleChat()" class="hover:text-spa-gold">✕</button>
+            </div>
+            <div id="chat-messages" class="h-60 overflow-y-auto p-4 space-y-3 bg-gray-50 text-[11px]">
+                <div class="p-3 rounded-xl bg-white border mr-auto max-w-[90%]">Welcome to MD SPA Rabat. How can I help you today?</div>
+            </div>
+            <form onsubmit="handleChat(event)" class="p-3 border-t flex gap-2">
+                <input id="chat-input" type="text" placeholder="Ask about Hammam..." class="flex-1 bg-gray-100 px-4 py-2 rounded-full text-[10px] outline-none focus:ring-1 focus:ring-spa-gold">
+                <button type="submit" class="bg-spa-gold text-white p-2 rounded-full hover:bg-yellow-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </form>
+        </div>
+
+        <button id="ai-btn" onclick="toggleChat()" class="bg-spa-charcoal text-spa-gold p-4 rounded-full shadow-xl flex items-center gap-2 font-bold text-[9px] tracking-widest uppercase hover:scale-105 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Advice
+        </button>
+    </div>
+
     <script>
-        setTimeout(() => {
-            if (!document.getElementById('root').innerHTML) {
-                document.body.innerHTML = '<div style="padding:20px; text-align:center;"><h1>⚠️ App Loading Error</h1><p>If you see this, your <code>index.tsx</code> code has import statements that browsers cannot read.</p><p><b>Solution:</b> Copy the full HTML code from Google AI Studio directly into <code>index.html</code> instead of using a separate .tsx file.</p></div>';
+        // 1. Scroll Effect for Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const logo = document.getElementById('nav-logo');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white', 'shadow-md');
+                logo.classList.remove('text-white');
+                logo.classList.add('text-spa-charcoal');
+            } else {
+                nav.classList.remove('bg-white', 'shadow-md');
+                logo.classList.add('text-white');
+                logo.classList.remove('text-spa-charcoal');
             }
-        }, 2000);
+        });
+
+        // 2. Chat Logic (Simple Demo Mode)
+        // Note: Real AI keys cannot be stored safely in simple HTML files. 
+        // This is a "Concierge Mode" that simulates the experience.
+        function toggleChat() {
+            const win = document.getElementById('ai-window');
+            const btn = document.getElementById('ai-btn');
+            if (win.classList.contains('hidden')) {
+                win.classList.remove('hidden');
+                btn.classList.add('hidden');
+            } else {
+                win.classList.add('hidden');
+                btn.classList.remove('hidden');
+            }
+        }
+
+        function handleChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const msgs = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            msgs.innerHTML += `<div class="p-3 rounded-xl bg-spa-gold text-white ml-auto max-w-[90%]">${text}</div>`;
+            input.value = '';
+            msgs.scrollTop = msgs.scrollHeight;
+
+            // Auto Reply (Simulation)
+            setTimeout(() => {
+                let reply = "For bookings and details, please contact us on WhatsApp: 212767071518";
+                if(text.toLowerCase().includes('hammam')) reply = "Our Hammam uses traditional black soap and eucalyptus. A perfect detox!";
+                if(text.toLowerCase().includes('nail')) reply = "We offer manicures and gel polish using premium products.";
+                
+                msgs.innerHTML += `<div class="p-3 rounded-xl bg-white border mr-auto max-w-[90%]">${reply}</div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 1000);
+        }
     </script>
 </body>
 </html>
-
