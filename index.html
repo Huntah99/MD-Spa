@@ -1,1 +1,28 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react" src="./index.tsx"></script>
+    
+    <script>
+        setTimeout(() => {
+            if (!document.getElementById('root').innerHTML) {
+                document.body.innerHTML = '<div style="padding:20px; text-align:center;"><h1>⚠️ App Loading Error</h1><p>If you see this, your <code>index.tsx</code> code has import statements that browsers cannot read.</p><p><b>Solution:</b> Copy the full HTML code from Google AI Studio directly into <code>index.html</code> instead of using a separate .tsx file.</p></div>';
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
+
